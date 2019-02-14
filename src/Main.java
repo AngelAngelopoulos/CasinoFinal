@@ -79,6 +79,7 @@ public class Main {
                         newDeck.InitDeck();
                         newDeck.ShuffleDeck();
                         ArrayList<Card> PlayerHand = newDeck.DrawCards();
+                        newDeck.ShuffleDeck();
                         ArrayList<Card> CompHand = newDeck.DrawCards();
                         System.out.println("\nPlayer Hand:");
                         Comparation.PrintMaze(PlayerHand);
@@ -105,7 +106,8 @@ public class Main {
         System.out.println("Bienvenido, elija el juego que guste jugar:\n" +
                 "1. Toss Coin\n" +
                 "2. Roll Dice\n" +
-                "3. Póker");
+                "3. Póker\n"+
+                "4. Exit");
     }
 
     public static boolean PlayAgain(Scanner scan)
@@ -118,11 +120,6 @@ public class Main {
         else if ("N".equals(ans) || "n".equals(ans))
             band = false;
         return band;
-    }
-
-    public static void MenuPoker()
-    {
-        System.out.println("Player");
     }
 }
 
@@ -358,9 +355,9 @@ class Deck {
     public void ShuffleDeck() {
         for (int x = 0; x < 1000; x++) {
             Random rand = new Random();
-            int i = rand.nextInt(51);
+            int i = rand.nextInt(CardDeck.size()-1) ;
             //System.out.println(i);
-            int j = rand.nextInt(50) + 1;
+            int j = rand.nextInt(CardDeck.size()-1);
             //System.out.println(j);
             if (i != j) {
                 Card temp = this.CardDeck.get(i);
